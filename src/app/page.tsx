@@ -1,35 +1,67 @@
 "use client";
-import React from 'react';
-import Navbar from '@/components/Navbar';
-import './styles.css';
+import React from "react";
+import Navbar from "@/components/Navbar";
+import "./styles.css";
 
 const Home: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-        
       <header className="bg-white text-white w-full py-4">
-        <div className="container mx-auto">
-          <Navbar/>
-        </div>
+        <Navbar />
       </header>
       <main className="container mx-auto my-8 flex flex-col items-center space-y-6">
+        <div className="text-center">
+          <div className="mx-auto">
+            <img
+              src="./images/logo_main.png"
+              alt="Social Verse Logo"
+              className="h-28 mb-4 mx-auto"
+            />
+          </div>
+          <h1 className="text-5xl font-bold mb-6 font-Raleway-Bold">
+            {" "}
+            {/*cant get the custom font to work here */}
+            Find your verse
+          </h1>
 
-        <p className="text-2xl font-semibold">Welcome!</p>
+          <p className="text-lg text-white mb-6">
+            Discover the endless possibilities
+            <br />
+            of connecting through the power of shared stories
+          </p>
+        </div>
 
-        <form className="messageForm">
-      <h2 className="messageHeader">Share your message with Social Verse!</h2>
-      <input
-        type="text"
-        className="messageField"
-        placeholder="Weekend plan?"
-      />
-    </form>
-    <button className='postBtn'>Post</button>
+        {/*should only appear when user is not logged in*/}
+        <div className="mb-20">
+          <button className="bg-blue-500 text-white px-4 py-2 mr-4 rounded">
+            Create Account
+          </button>
+          <button className="bg-gray-500 text-white px-4 py-2 rounded">
+            Login
+          </button>
+        </div>
+        {/*should only appear when user is not logged in*/}
 
-        
+        <div className="mt-80">
+          {/*should only appear when user is logged in*/}
+          <form className="messageForm mt-8">
+            <h2 className="text-2xl font-semibold mb-4">
+              Share your message with Social Verse!
+            </h2>
+            <input
+              type="text"
+              className="border p-2 w-full"
+              placeholder="Weekend plan?"
+            />
+            <button className="postBtn bg-blue-500 text-white px-4 py-2 mt-4 rounded">
+              Post
+            </button>
+          </form>
+          {/*should only appear when user is logged in*/}
+          <p>Here, other people's posts will be shown.</p>
+        </div>
       </main>
-      <p>Here, the other people's posts will be shown.</p>
-      <footer className="bg-white text-black w-full py-4 mt-auto">
+      <footer className="bg-black text-white w-full py-4 mt-auto">
         <div className="container mx-auto text-center">
           <p>&copy; 2023 Social Verse. All rights reserved.</p>
         </div>

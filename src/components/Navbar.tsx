@@ -8,24 +8,23 @@ interface NavLinkProps {
 }
 
 const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
-    return (
-      <NextLink href={href} passHref>
-        <div className="hover:underline cursor-pointer">{children}</div>
-      </NextLink>
-    );
-  };
+  return (
+    <NextLink href={href} passHref>
+      <div className="hover:underline cursor-pointer">{children}</div>
+    </NextLink>
+  );
+};
 
 const Navbar: React.FC = () => {
   return (
     <nav className="nav-bar">
       <div className="container mx-auto flex justify-between items-center">
-        <img src="/images/logo_main.png" alt="Social Verse Logo" width="70" height="70" />
+        <h1 className="text-2xl font-bold text-white">Social Verse</h1>
         <div className="flex space-x-4">
           <NavLink href="/">Feed</NavLink>
           <NavLink href="/trending">Trending</NavLink>
           <NavLink href="/profile">My Profile</NavLink>
-          <NavLink href="/settings">Settings</NavLink>  {/* change it to an icon later on */}
-          
+          <NavLink href="/settings">Settings</NavLink> 
         </div>
       </div>
     </nav>
