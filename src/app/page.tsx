@@ -1,78 +1,41 @@
 "use client";
-import { useState } from "react";
+import React from 'react';
+import Navbar from '@/components/Navbar';
+import './styles.css';
 
-import Footer from "@/components/Footer";
-import Login from "@/components/Login";
-import Link from "next/link";
-
-export default function Home() {
-  const [openModal, setOpenModal] = useState(false);
-
-  const handleModal = () => {
-    console.log(openModal);
-    setOpenModal(!openModal);
-  };
+const Home: React.FC = () => {
   return (
-    <>
-      {openModal ? <Login handleModal={handleModal} /> : null}
-      <main className="flex min-h-screen flex-col items-center justify-between">
-        <section className="text-gray-400 body-font">
-          <div className="container flex px-5 py-24 md:flex-row flex-col items-center">
-            <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 md:mb-0 mb-10 flex flex-col flex-grow">
-              <img
-                className="object-cover object-center rounded"
-                alt="hero"
-                src="https://dummyimage.com/720x600"
-              />
-            </div>
-            <div className="md:w-1/2 lg:pl-24 md:pl-16 flex flex-col  md:text-left items-center space-y-4">
-              <button className="px-14 w-full py-2 border flex gap-2 border-primary rounded-full text-slate-200 hover:border-secondary hover:text-slate-300 hover:shadow transition duration-150 items-center justify-center">
-                <img
-                  className="w-4 h-4"
-                  src="https://www.svgrepo.com/show/475656/google-color.svg"
-                  loading="lazy"
-                  alt="google logo"
-                />
-                <span>Sign up with Google</span>
-              </button>
-              <Link
-                href="/sign-up"
-                className="px-14 w-full py-2 border flex gap-2 border-primary rounded-full text-slate-200 hover:border-secondary hover:text-slate-300 hover:shadow transition duration-150 items-center justify-center"
-              >
-                <img
-                  className="w-5 h-5"
-                  src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/guest-male.png"
-                  loading="lazy"
-                  alt="account logo"
-                />
-                <span>Create an account</span>
-              </Link>
-              <p className="text-xs text-gray-400">
-                By signing up, you agree to the Terms of Service and Privacy
-                Policy, including Cookie Use.
-              </p>
-              <div className="w-full pt-20 space-y-2">
-                <p className="text-xl text-white font-medium">
-                  Already have an account?
-                </p>
-                <button
-                  className="px-14 w-full py-2 border flex gap-2 bg-primary border-primary rounded-full text-slate-200 hover:border-white hover:text-white hover:shadow transition duration-150 items-center justify-center"
-                  onClick={handleModal}
-                >
-                  <img
-                    className="w-5 h-5"
-                    src="https://img.icons8.com/material-outlined/24/FFFFFF/enter-2.png"
-                    loading="lazy"
-                    alt="log in logo"
-                  />
-                  Log In
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-        <Footer />
+    <div className="flex flex-col items-center justify-center h-screen">
+        
+      <header className="bg-white text-white w-full py-4">
+        <div className="container mx-auto">
+          <Navbar/>
+        </div>
+      </header>
+      <main className="container mx-auto my-8 flex flex-col items-center space-y-6">
+
+        <p className="text-2xl font-semibold">Welcome!</p>
+
+        <form className="messageForm">
+      <h2 className="messageHeader">Share your message with Social Verse!</h2>
+      <input
+        type="text"
+        className="messageField"
+        placeholder="Weekend plan?"
+      />
+    </form>
+    <button className='postBtn'>Post</button>
+
+        
       </main>
-    </>
+      <p>Here, the other people's posts will be shown.</p>
+      <footer className="bg-white text-black w-full py-4 mt-auto">
+        <div className="container mx-auto text-center">
+          <p>&copy; 2023 Social Verse. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
   );
-}
+};
+
+export default Home;
