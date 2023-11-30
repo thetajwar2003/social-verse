@@ -1,9 +1,34 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import "./styles.css";
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import firebaseConfig from '../../firebase'; 
+import app from '../../firebase';
+import db from '../../firebase';
+
 
 const Home: React.FC = () => {
+
+  {/* Update firestore db with a new post */}
+  const [postText, setPostText] = useState('');
+
+  const handlePostSubmit = async () => {
+    try {
+      const postDocRef = await addDoc(collection(db, 'posts'), {
+        text: postText,
+        timestamp: new Date(),
+      });
+      console.log('Post added with ID:', postDocRef.id);
+
+      // Clear the input field after submission
+      setPostText('');
+    } catch (error) {
+      console.error('Error adding post:', error);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <header className="bg-white text-white w-full py-4">
@@ -20,7 +45,7 @@ const Home: React.FC = () => {
           </div>
           <h1 className="text-5xl font-bold mb-6 font-Raleway-Bold">
             {" "}
-            {/*cant get the custom font to work here */}
+      
             Find your verse
           </h1>
 
@@ -44,16 +69,18 @@ const Home: React.FC = () => {
 
         <div className="mt-80">
           {/*should only appear when user is logged in*/}
-          <form className="messageForm mt-8">
+          <form className="messageForm mt-8" onSubmit={(e) => e.preventDefault()}>
             <h2 className="text-2xl font-semibold mb-4">
               Share your message with Social Verse!
             </h2>
             <input
               type="text"
-              className="border p-2 w-full"
+              className="border p-2 w-full text-black"
               placeholder="Weekend plan?"
+              value={postText}
+              onChange={(e) => setPostText(e.target.value)}
             />
-            <button className="postBtn bg-blue-500 text-white px-4 py-2 mt-4 rounded">
+            <button className="postBtn bg-blue-500 text-white px-4 py-2 mt-4 rounded" onClick={handlePostSubmit}>
               Post
             </button>
           </form>
