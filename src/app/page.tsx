@@ -1,78 +1,80 @@
 "use client";
-import { useState } from "react";
+import { createContext, useState } from "react";
 
-import Footer from "@/components/Footer";
-import Login from "@/components/Login";
 import Link from "next/link";
+import AuthLayout from "./authLayout";
+
+import messages from "../mock/messages.json";
+import MessageCard from "@/components/MessageCard";
+import { signOut } from "@/lib/firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/lib/firebase/config";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const [openModal, setOpenModal] = useState(false);
+  const [user] = useAuthState(auth);
 
-  const handleModal = () => {
-    console.log(openModal);
-    setOpenModal(!openModal);
-  };
+  const router = useRouter();
   return (
-    <>
-      {openModal ? <Login handleModal={handleModal} /> : null}
-      <main className="flex min-h-screen flex-col items-center justify-between">
-        <section className="text-gray-400 body-font">
-          <div className="container flex px-5 py-24 md:flex-row flex-col items-center">
-            <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 md:mb-0 mb-10 flex flex-col flex-grow">
+    <AuthLayout>
+      <div className="flex flex-col h-screen">
+        <main className="container mx-auto my-8 flex flex-col items-center space-y-6">
+          <div className="text-center">
+            <div className="mx-auto">
               <img
-                className="object-cover object-center rounded"
-                alt="hero"
-                src="https://dummyimage.com/720x600"
+                src="./logo_main.png"
+                alt="Social Verse Logo"
+                className="h-28 mb-4 mx-auto"
               />
             </div>
-            <div className="md:w-1/2 lg:pl-24 md:pl-16 flex flex-col  md:text-left items-center space-y-4">
-              <button className="px-14 w-full py-2 border flex gap-2 border-primary rounded-full text-slate-200 hover:border-secondary hover:text-slate-300 hover:shadow transition duration-150 items-center justify-center">
-                <img
-                  className="w-4 h-4"
-                  src="https://www.svgrepo.com/show/475656/google-color.svg"
-                  loading="lazy"
-                  alt="google logo"
-                />
-                <span>Sign up with Google</span>
-              </button>
-              <Link
-                href="/sign-up"
-                className="px-14 w-full py-2 border flex gap-2 border-primary rounded-full text-slate-200 hover:border-secondary hover:text-slate-300 hover:shadow transition duration-150 items-center justify-center"
-              >
-                <img
-                  className="w-5 h-5"
-                  src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/guest-male.png"
-                  loading="lazy"
-                  alt="account logo"
-                />
-                <span>Create an account</span>
-              </Link>
-              <p className="text-xs text-gray-400">
-                By signing up, you agree to the Terms of Service and Privacy
-                Policy, including Cookie Use.
-              </p>
-              <div className="w-full pt-20 space-y-2">
-                <p className="text-xl text-white font-medium">
-                  Already have an account?
-                </p>
-                <button
-                  className="px-14 w-full py-2 border flex gap-2 bg-primary border-primary rounded-full text-slate-200 hover:border-white hover:text-white hover:shadow transition duration-150 items-center justify-center"
-                  onClick={handleModal}
-                >
-                  <img
-                    className="w-5 h-5"
-                    src="https://img.icons8.com/material-outlined/24/FFFFFF/enter-2.png"
-                    loading="lazy"
-                    alt="log in logo"
-                  />
-                  Log In
-                </button>
-              </div>
-            </div>
+            <h1 className="text-5xl font-bold mb-6 font-Raleway-Bold">
+              {" "}
+              Find your verse
+            </h1>
+
+            <p className="text-lg text-white mb-6">
+              Discover the endless possibilities
+              <br />
+              of connecting through the power of shared stories
+            </p>
           </div>
-        </section>
-        <Footer />
-      </main>
-    </>
+
+          <div className="mt-80 flex flex-col items-center">
+            {user ? (
+              <>
+                <form
+                  className="messageForm mt-8"
+                  onSubmit={(e) => e.preventDefault()}
+                >
+                  <h2 className="text-2xl font-semibold mb-4">
+                    Hey {user.displayName}! Share your message with Social
+                    Verse!
+                  </h2>
+                  <input
+                    type="text"
+                    className="border p-2 w-full text-black"
+                    placeholder="Weekend plan?"
+                    // value={postText}
+                    // onChange={(e) => setPostText(e.target.value)}
+                  />
+                  <button
+                    className="postBtn bg-blue-500 text-white px-4 py-2 mt-4 rounded"
+                    disabled={true}
+                    // onClick={handlePostSubmit}
+                  >
+                    Post
+                  </button>
+                </form>
+              </>
+            ) : null}
+
+            {/*should only appear when user is logged in*/}
+            {messages.map((m, index) => (
+              <MessageCard {...m} key={index} />
+            ))}
+          </div>
+        </main>
+      </div>
+    </AuthLayout>
   );
 }
