@@ -16,7 +16,7 @@ export default function LoginPage() {
   };
 
   return (
-    <AuthLayout>
+    <>
       {openModal ? <Login handleModal={handleModal} /> : null}
       <main className="flex min-h-screen flex-col items-center justify-between">
         <section className="text-gray-400 body-font">
@@ -77,8 +77,7 @@ export default function LoginPage() {
             </div>
           </div>
         </section>
-        <Footer />
       </main>
-    </AuthLayout>
+    </>
   );
 }

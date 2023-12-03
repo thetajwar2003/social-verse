@@ -1,4 +1,6 @@
 "use client";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import { AuthContextProvider } from "@/context/AuthContext";
 
 export default function AuthLayout({
@@ -6,5 +8,11 @@ export default function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <AuthContextProvider>{children}</AuthContextProvider>;
+  return (
+    <AuthContextProvider>
+      <Header />
+      {children}
+      {/* <Footer /> */}
+    </AuthContextProvider>
+  );
 }
