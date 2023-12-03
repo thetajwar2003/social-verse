@@ -33,7 +33,7 @@ export default function MessageCard({
     : postedDateTime.toLocaleDateString();
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 m-4 w-full max-w-md">
+    <div className="bg-white shadow-md rounded-lg p-6 m-4 w-full ">
       <div className="flex justify-between items-center mb-2">
         <h2 className="text-xl text-black font-bold ">{authorID}</h2>
         <span

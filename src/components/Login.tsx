@@ -96,7 +96,7 @@ export default function Login({ handleModal }: LoginProps) {
                     loading="lazy"
                     alt="google logo"
                   />
-                  Sign up with Google
+                  Login with Google
                 </button>
               </div>
               <div className="p-2 w-full pt-8 mt-8 border-t border-gray-800 text-center"></div>

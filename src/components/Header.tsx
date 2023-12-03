@@ -25,25 +25,27 @@ export default function Header() {
         <div className="flex items-center space-x-4">
           {/*Search button on navbar*/}
           <SearchBox />
-          <Link href="/">
-            <div className="hover:underline cursor-pointer">Feed</div>
-          </Link>
-          <Link href="/trending">
-            <div className="hover:underline cursor-pointer">Trending</div>
-          </Link>
-          <Link href="/profile">
-            <div className="hover:underline cursor-pointer">My Profile</div>
-          </Link>
-          <Link href="/settings">
-            <div className="hover:underline cursor-pointer">Settings</div>
-          </Link>
           {user ? (
-            <button
-              onClick={handleSignOut}
-              className="bg-red-500 text-white p-1 rounded"
-            >
-              Sign Out
-            </button>
+            <>
+              <Link href="/">
+                <div className="hover:underline cursor-pointer">Feed</div>
+              </Link>
+              <Link href="/trending">
+                <div className="hover:underline cursor-pointer">Trending</div>
+              </Link>
+              <Link href="/profile">
+                <div className="hover:underline cursor-pointer">My Profile</div>
+              </Link>
+              <Link href="/settings">
+                <div className="hover:underline cursor-pointer">Settings</div>
+              </Link>
+              <button
+                onClick={handleSignOut}
+                className="bg-red-500 text-white p-1 rounded"
+              >
+                Sign Out
+              </button>
+            </>
           ) : (
             <Link href="/login" className="bg-blue-500 text-white p-1 rounded">
               <span className="text-white">Login</span>
