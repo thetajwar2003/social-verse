@@ -1,0 +1,57 @@
+[
+  {
+    "authorID": "creative_writer_01",
+    "complaints": 2,
+    "content": "Is this the best cafe in town? Let's debate!",
+    "dislikes": 3,
+    "keywords": ["cafe", "debate", "town"],
+    "likes": 45,
+    "postedDate": "2023-12-02T05:13:36",
+    "reads": "200",
+    "trendy": true
+  },
+  {
+    "authorID": "tech_guru_92",
+    "complaints": 1,
+    "content": "New tech release! Is it worth the hype?",
+    "dislikes": 5,
+    "keywords": ["technology", "new release"],
+    "likes": 120,
+    "postedDate": "2023-11-24T06:10:37",
+    "reads": "500",
+    "trendy": true
+  },
+  {
+    "authorID": "daily_news_360",
+    "complaints": 0,
+    "content": "Breaking news! Historic event shakes the globe.",
+    "dislikes": 0,
+    "keywords": ["breaking", "news", "historic"],
+    "likes": 300,
+    "postedDate": "2023-07-11T12:24:26",
+    "reads": "1000",
+    "trendy": true
+  },
+  {
+    "authorID": "movie_buff_84",
+    "complaints": 4,
+    "content": "That movie ending was unexpected! Who agrees?",
+    "dislikes": 20,
+    "keywords": ["movies", "ending", "discussion"],
+    "likes": 75,
+    "postedDate": "2023-08-12T18:31:36",
+    "reads": "350",
+    "trendy": false
+  },
+  {
+    "authorID": "health_advocate_101",
+    "complaints": 3,
+    "content": "Top 10 healthy eating habits for a better life.",
+    "dislikes": 15,
+    "keywords": ["health", "eating habits", "lifestyle"],
+    "likes": 200,
+    "postedDate": "2023-08-13T04:13:29",
+    "reads": "425",
+    "trendy": true
+  }
+]
