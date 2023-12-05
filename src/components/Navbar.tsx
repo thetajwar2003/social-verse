@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { FaSearch, FaTimes } from 'react-icons/fa';
 import Link from 'next/link';
@@ -12,7 +13,9 @@ interface NavLinkProps {
 const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
   return (
     <NextLink href={href} passHref>
-      <div className="hover:underline cursor-pointer">{children}</div>
+      <div className="hover:underline cursor-pointer">
+        <a>{children}</a>
+      </div>
     </NextLink>
   );
 };
@@ -44,7 +47,7 @@ const Navbar: React.FC = () => {
             <FaSearch />
           </button>
           <NavLink href="/">Feed</NavLink>
-          <NavLink href="/trending">Trending</NavLink>
+          <NavLink href="/payment">Payment</NavLink>
           <NavLink href="/profile">My Profile</NavLink>
           <NavLink href="/settings">Settings</NavLink>
         </div>

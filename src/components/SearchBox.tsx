@@ -1,40 +1,30 @@
-import { FaSearch, FaTimes } from 'react-icons/fa';
+import React, { useState } from "react";
+import { FaSearch } from "react-icons/fa";
 
-interface SearchBoxProps {
-  onClose: () => void;
-  onSearch: () => void;
-}
+export default function SearchBox({}) {
+  const [search, setSearch] = useState("");
 
-const SearchBox: React.FC<SearchBoxProps> = ({ onClose, onSearch }) => {
+  const handleSearch = (event: any) => {
+    // TODO: search logic
+    console.log(search);
+    event.preventDefault();
+  };
+
   return (
-    <div className="bg-white p-4 rounded-md shadow-md fixed top-0 left-0 right-0 m-4 max-w-md mx-auto">
-      {/* Close icon */}
-      <div className="cursor-pointer mb-4" onClick={onClose}>
-        <FaTimes size={20} color="black" />
-      </div>
-      {/* Input field*/}
+    <form
+      onSubmit={handleSearch}
+      className="flex items-center border-2 rounded-md overflow-hidden"
+    >
       <input
-        type="text"
-        placeholder="Search..."
-        className="border border-gray-300 p-2 rounded-md mx-auto mb-4 block w-full"
+        type="search"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Search"
+        className="px-4 w-full text-black"
       />
-      {/* Search icon */}
-      <div className="flex justify-between">
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
-          onClick={onSearch}
-        >
-          Search
-        </button>
-        <button
-          className="bg-gray-500 text-white px-4 py-2 rounded"
-          onClick={onClose}
-        >
-          Close
-        </button>
-      </div>
-    </div>
+      <button type="submit" className=" px-4 py-2 hover:bg-gray-300">
+        <FaSearch />
+      </button>
+    </form>
   );
-};
-
-export default SearchBox;
+}
