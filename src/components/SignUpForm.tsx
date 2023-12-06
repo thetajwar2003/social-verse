@@ -48,13 +48,17 @@ export default function SignUpForm() {
     const userData = {
       ...formData,
       followers: 0,
+      followersList: [],
       following: 0,
+      followingList: [],
       trendy: false,
       verses: [],
       trendyVerses: 0,
       tips: 0,
       totalLike: 0,
       totalDislikes: 0,
+      likedPosts: [],
+      dislikedPosts: [],
       warnings: 0,
       userType: formData.isCorporateUser ? "CU" : "OU",
     };

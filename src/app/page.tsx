@@ -1,78 +1,83 @@
 "use client";
-import { createContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
 import AuthLayout from "./authLayout";
 
 import messages from "../mock/messages.json";
 import MessageCard from "@/components/MessageCard";
-import { signOut } from "@/lib/firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/lib/firebase/config";
 import { useRouter } from "next/navigation";
+import PostCard from "@/components/PostCard";
+import { getUserData } from "@/lib/firebase/database";
+import { DocumentData } from "firebase/firestore";
 
 export default function Home() {
+  const [userData, setUserData] = useState<DocumentData | null>(null);
   const [user] = useAuthState(auth);
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const data = await getUserData(user?.uid!);
+        setUserData(data); // Set the user data state
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        // Handle the error as needed
+      }
+    };
+
+    // Call the function if userId is available
+    if (user?.uid!) {
+      fetchUserData();
+    }
+  }, [user]);
 
   return (
     <AuthLayout>
       <div className="flex flex-col h-screen">
-        <main className="container mx-auto my-8 flex flex-col items-center space-y-6">
-          <div className="text-center">
-            <div className="mx-auto">
+        <main className="container mx-auto p-10 flex">
+          <section className="flex-grow">
+            <div className="text-center py-4">
               <img
                 src="./logo_main.png"
                 alt="Social Verse Logo"
-                className="h-28 mb-4 mx-auto"
+                className="h-12 mb-2 mx-auto"
               />
+              <h1 className="text-xl font-bold mb-4">Find your verse</h1>
+              <p className="text-sm mb-4">
+                Discover the endless possibilities of connecting through the
+                power of shared stories
+              </p>
             </div>
-            <h1 className="text-5xl font-bold mb-6 font-Raleway-Bold">
-              {" "}
-              Find your verse
-            </h1>
 
-            <p className="text-lg text-white mb-6">
-              Discover the endless possibilities
-              <br />
-              of connecting through the power of shared stories
-            </p>
-          </div>
+            {/* User post input */}
+            {user ? <PostCard userData={userData} /> : null}
 
-          <div className="mt-80 flex flex-col items-center">
-            {user ? (
-              <>
-                <form
-                  className="messageForm mt-8"
-                  onSubmit={(e) => e.preventDefault()}
-                >
-                  <h2 className="text-2xl font-semibold mb-4">
-                    Hey {user.displayName}! Share your message with Social
-                    Verse!
-                  </h2>
-                  <input
-                    type="text"
-                    className="border p-2 w-full text-black"
-                    placeholder="Weekend plan?"
-                    // value={postText}
-                    // onChange={(e) => setPostText(e.target.value)}
-                  />
-                  <button
-                    className="postBtn bg-blue-500 text-white px-4 py-2 mt-4 rounded"
-                    disabled={true}
-                    // onClick={handlePostSubmit}
-                  >
-                    Post
-                  </button>
-                </form>
-              </>
-            ) : null}
+            {/* User posts feed */}
+            <div className="divide-y">
+              {messages.map((m, index) => (
+                <MessageCard {...m} key={index} />
+              ))}
+            </div>
+          </section>
 
-            {/*should only appear when user is logged in*/}
-            {messages.map((m, index) => (
-              <MessageCard {...m} key={index} />
-            ))}
-          </div>
+          <aside className="w-80 pt-4 pl-4">
+            {/* Top 3 Trendy Users */}
+            <div className=" rounded-lg mb-4 p-4">
+              <h3 className="font-bold text-lg mb-2">Top 3 Trendy Users</h3>
+              {/* Add user cards here */}
+            </div>
+
+            {/* Suggested Users */}
+            <div className=" rounded-lg p-4">
+              <h3 className="font-bold text-lg mb-2">Suggested Users</h3>
+              {/* Add user cards here */}
+            </div>
+          </aside>
         </main>
       </div>
     </AuthLayout>
