@@ -3,6 +3,7 @@ import {
   collection,
   addDoc,
   getDoc,
+  setDoc,
   updateDoc,
   deleteDoc,
   doc,
@@ -56,11 +57,14 @@ export async function deleteMessage(docId: string) {
 }
 
 // Function to add a user to the 'users' collection
-export async function addUser(userData: any) {
+export async function addUser(userData: any, docId: string) {
   try {
-    const docRef = await addDoc(collection(db, "users"), userData);
-    console.log("User added with ID: ", docRef.id);
+    const docRef = doc(db, "users", docId);
+    await setDoc(docRef, userData);
+    console.log("User added with ID: ", docId);
+    return docId;
   } catch (e) {
     console.error("Error adding user: ", e);
+    return;
   }
 }

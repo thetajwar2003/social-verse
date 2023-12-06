@@ -13,8 +13,8 @@ import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [user] = useAuthState(auth);
-
   const router = useRouter();
+
   return (
     <AuthLayout>
       <div className="flex flex-col h-screen">

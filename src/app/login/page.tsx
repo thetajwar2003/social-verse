@@ -1,18 +1,25 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 
 import Footer from "@/components/Footer";
 import Login from "@/components/Login";
 import Link from "next/link";
+
 import { signInWithGoogle } from "@/lib/firebase/auth";
-import AuthLayout from "../authLayout";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [openModal, setOpenModal] = useState(false);
 
+  const router = useRouter();
+
   const handleModal = () => {
     console.log(openModal);
     setOpenModal(!openModal);
+  };
+
+  const handleSignUp = () => {
+    signInWithGoogle().then(() => router.push("/sign-up"));
   };
 
   return (
@@ -30,7 +37,7 @@ export default function LoginPage() {
             </div>
             <div className="md:w-1/2 lg:pl-24 md:pl-16 flex flex-col  md:text-left items-center space-y-4">
               <button
-                onClick={() => signInWithGoogle()}
+                onClick={handleSignUp}
                 className="px-14 w-full py-2 border flex gap-2 border-primary rounded-full text-slate-200 hover:border-secondary hover:text-slate-300 hover:shadow transition duration-150 items-center justify-center"
               >
                 <img
