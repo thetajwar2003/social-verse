@@ -18,11 +18,13 @@ export default function Header() {
   return (
     <nav className="nav-bar">
       <div className="container mx-auto flex justify-between items-center relative p-4">
+
       <Link href="/">
           <h1 className="text-2xl font-bold text-white flex items-center cursor-pointer">
             Social Verse
           </h1>
         </Link>
+
 
         <div className="flex items-center space-x-4">
           {/*Search button on navbar*/}
@@ -30,6 +32,7 @@ export default function Header() {
           {user ? (
             <>
               <Link href="/">
+
                 <div className=" hover:bg-white hover:text-black cursor-pointer">Feed</div>
               </Link>
               <Link href="/payment">
@@ -41,6 +44,7 @@ export default function Header() {
               <button
                 onClick={handleSignOut}
                 className="bg-white text-black p-1 rounded"
+
               >
                 Sign Out
               </button>

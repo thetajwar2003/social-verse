@@ -10,6 +10,9 @@ export default function LoginPage() {
   const [openModal, setOpenModal] = useState(false);
 
   const handleModal = () => {
+
+    console.log(openModal);
+
     setOpenModal(!openModal);
   };
 
@@ -62,6 +65,7 @@ export default function LoginPage() {
                   Already have an account?
                 </p>
                 <button
+
                   className="px-14 w-full py-2 border flex gap-2 bg-blue-500 border-blue-500 rounded-full text-white hover:border-white hover:text-white hover:shadow transition duration-150 items-center justify-center"
                   onClick={handleModal}
                 >
