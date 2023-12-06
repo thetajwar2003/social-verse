@@ -39,7 +39,7 @@ export default function Payment() {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log('Form data:', data);
-    alert('clicked');
+    alert('Processing payment...');
   
     if (!user) {
       console.error('User not authenticated');
@@ -106,8 +106,7 @@ export default function Payment() {
             placeholder="Card Number"
             {...register("cardNumber", {
               required: true,
-              maxLength: 19,
-              pattern: /^\S+@\S+$/i,
+              maxLength: 16,
             })}
           />
         </div>
@@ -130,7 +129,7 @@ export default function Payment() {
             type="password"
             className="text-black border rounded w-full py-2 px-3 focus:outline-none focus:border-blue-500"
             placeholder="CVV"
-            {...register("cvv", { required: true, maxLength: 5 })}
+            {...register("cvv", { required: true, maxLength: 3 })}
           />
         </div>
 

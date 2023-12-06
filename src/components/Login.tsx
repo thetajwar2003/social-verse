@@ -84,7 +84,7 @@ export default function Login({ handleModal }: LoginProps) {
               </div>
               <div className="p-2 w-auto space-y-4">
                 <button
-                  className="flex mx-auto text-white bg-blue-500 border-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-white hover:text-black rounded-full text-lg w-full justify-center items-center"
+                  className="flex mx-auto text-white bg-blue-500 border-blue-500 border py-2 px-8 focus:outline-none hover:bg-black hover:text-white hover:border-blue-500 hover:border rounded-full text-lg w-full justify-center items-center"
                   onClick={onSignIn}
                 >
                   <img
@@ -96,7 +96,7 @@ export default function Login({ handleModal }: LoginProps) {
                   Log In
                 </button>
                 <button
-                  className="mx-auto px-8 py-2 border flex gap-2 bg-blue-500 border-blue-500 rounded-full text-white hover:border-white hover:text-white hover:shadow transition duration-150 items-center justify-center"
+                  className="mx-auto px-8 py-2 border flex gap-2 bg-white border-blue-500 rounded-full text-black hover:border-white hover:bg-black hover:text-white hover:shadow transition duration-150 items-center justify-center"
                   onClick={onSignIn}
                 >
                   <img

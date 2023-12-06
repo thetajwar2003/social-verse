@@ -9,7 +9,8 @@ import app from '../../firebase';
 import db from '../../firebase';
 
 
-const Home: React.FC = () => {
+{ /*const Home: React.FC = () => { */}
+export default function Home() {
 
   {/* Update firestore db with a new post */}
   const [postText, setPostText] = useState('');
@@ -97,4 +98,3 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;

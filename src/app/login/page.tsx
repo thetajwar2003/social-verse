@@ -32,7 +32,7 @@ export default function LoginPage() {
               </h1>
               <button
                 onClick={() => signInWithGoogle()}
-                className="px-14 w-full py-2 border flex gap-2 bg-blue-500 border-blue-500 rounded-full text-white hover:border-white hover:text-white hover:shadow transition duration-150 items-center justify-center"
+                className="px-14 w-full py-2 border flex gap-2 bg-white border-blue-500 rounded-full text-black hover:border-white hover:shadow transition duration-150 items-center justify-center"
               >
                 <img
                   className="w-4 h-4"
