@@ -39,25 +39,33 @@ export default function ProfilePage() {
           </div>
           <div className="flex-grow">
             <h2 className="text-2xl font-bold mb-2">{user.displayName}</h2>
-            <p className="text-gray-700 mb-4">{userData.bio}</p>
+
+            <p className="text-gray-300 mb-4">{userData.bio}</p>
+
             <div className="flex space-x-6 justify-center lg:justify-start">
               <div className="text-center">
                 <span className="text-lg font-semibold">
                   {userData.versesCount}
                 </span>
-                <span className="block text-sm text-gray-600">Verses</span>
+
+                <span className="block text-sm text-gray-300">Verses</span>
+
               </div>
               <div className="text-center">
                 <span className="text-lg font-semibold">
                   {userData.followersCount}
                 </span>
-                <span className="block text-sm text-gray-600">Followers</span>
+
+                <span className="block text-sm text-gray-300">Followers</span>
+
               </div>
               <div className="text-center">
                 <span className="text-lg font-semibold">
                   {userData.followingCount}
                 </span>
-                <span className="block text-sm text-gray-600">Following</span>
+
+                <span className="block text-sm text-gray-300">Following</span>
+
               </div>
             </div>
           </div>

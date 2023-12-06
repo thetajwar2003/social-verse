@@ -14,10 +14,18 @@ export default function Login({ handleModal }: LoginProps) {
     await signInWithGoogle();
     router.push("/");
   };
+
+
   return (
     <AuthLayout>
       <section className="text-gray-400 body-font absolute inset-0 bg-black">
-        <div className="container px-5 py-24 mx-auto">
+        <div className="container px-5 py-24 mx-auto flex flex-col items-center"> {/* Updated here */}
+          <img
+            className="h-40 object-center mb-4"
+            alt="Social Verse Logo"
+            src="/images/logo_main.png"
+          />
+
           <div className="flex flex-row text-center w-full mb-12 justify-around">
             <h1 className="sm:text-3xl text-2xl font-medium title-font text-white">
               Sign Into Social Verse
@@ -36,9 +44,10 @@ export default function Login({ handleModal }: LoginProps) {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+
                   d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
                 />
               </svg>
@@ -77,7 +86,12 @@ export default function Login({ handleModal }: LoginProps) {
                 </div>
               </div>
               <div className="p-2 w-auto space-y-4">
-                <button className="flex mx-auto text-white bg-primary border-0 py-2 px-8 focus:outline-none hover:bg-secondary rounded-full text-lg w-full justify-center items-center">
+
+                <button
+                  className="flex mx-auto text-white bg-blue-500 border-blue-500 border py-2 px-8 focus:outline-none hover:bg-black hover:text-white hover:border-blue-500 hover:border rounded-full text-lg w-full justify-center items-center"
+                  onClick={onSignIn}
+                >
+
                   <img
                     className="w-5 h-5"
                     src="https://img.icons8.com/material-outlined/24/FFFFFF/enter-2.png"
@@ -87,7 +101,9 @@ export default function Login({ handleModal }: LoginProps) {
                   Log In
                 </button>
                 <button
-                  className="mx-auto px-8 py-2 border flex gap-2 border-primary rounded-full text-slate-200 hover:border-secondary hover:text-slate-300 hover:shadow transition duration-150 items-center justify-center"
+
+                  className="mx-auto px-8 py-2 border flex gap-2 bg-white border-blue-500 rounded-full text-black hover:border-white hover:bg-black hover:text-white hover:shadow transition duration-150 items-center justify-center"
+
                   onClick={onSignIn}
                 >
                   <img
