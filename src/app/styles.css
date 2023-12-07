@@ -1,0 +1,75 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.messageForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+  
+  .messageHeader {
+    font-size: 3xl;
+    margin-bottom: 4px;
+    align-self: flex-start;
+  }
+  
+  .messageField {
+    padding: 10px;
+    border: 1px solid #1b62bf;
+    border-radius: 0.375rem;
+    width: 25rem;
+    outline: none;
+    color: black;
+    min-height: 40px;
+  }
+  
+  .messageField:focus {
+    border-color: #e14242;
+  }
+
+  .postBtn {
+    background-color: #1b62bf; 
+    color: #ffffff; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 0.375rem; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+  }
+  
+  .postBtn:hover {
+    background-color: #15569e; 
+  }
+
+  .nav-bar {
+    background-color: #c31b9c; 
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 1rem;
+    height: 60px;
+    margin: 0;
+}
+
+@font-face {
+  font-family: 'Raleway-Bold';
+  src: url('/Raleway-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Raleway-Bold', sans-serif;
+}
+
+
+
+
+
+
+  

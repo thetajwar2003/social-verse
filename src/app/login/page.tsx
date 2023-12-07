@@ -15,6 +15,7 @@ export default function LoginPage() {
 
   const handleModal = () => {
     console.log(openModal);
+
     setOpenModal(!openModal);
   };
 
@@ -28,14 +29,17 @@ export default function LoginPage() {
       <main className="flex min-h-screen flex-col items-center justify-between">
         <section className="text-gray-400 body-font">
           <div className="container flex px-5 py-24 md:flex-row flex-col items-center">
-            <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 md:mb-0 mb-10 flex flex-col flex-grow">
+            <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 md:mb-0 mb-10 flex flex-col flex-grow items-center">
               <img
-                className="object-cover object-center rounded"
-                alt="hero"
-                src="https://dummyimage.com/720x600"
+                className="h-120 object-center rounded mb-4"
+                alt="Social Verse Logo"
+                src="/images/logo_main.png"
               />
             </div>
-            <div className="md:w-1/2 lg:pl-24 md:pl-16 flex flex-col  md:text-left items-center space-y-4">
+            <div className="md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:text-left items-center space-y-4">
+              <h1 className="text-3xl font-bold text-white mb-4">
+                Join Social Verse
+              </h1>
               <button
                 onClick={handleSignUp}
                 className="px-14 w-full py-2 border flex gap-2 border-primary rounded-full text-slate-200 hover:border-secondary hover:text-slate-300 hover:shadow transition duration-150 items-center justify-center"
@@ -50,7 +54,7 @@ export default function LoginPage() {
               </button>
               <Link
                 href="/sign-up"
-                className="px-14 w-full py-2 border flex gap-2 border-primary rounded-full text-slate-200 hover:border-secondary hover:text-slate-300 hover:shadow transition duration-150 items-center justify-center"
+                className="px-14 w-full py-2 border flex gap-2 bg-blue-500 border-blue-500 rounded-full text-white hover:border-white hover:text-white hover:shadow transition duration-150 items-center justify-center"
               >
                 <img
                   className="w-5 h-5"
@@ -69,7 +73,7 @@ export default function LoginPage() {
                   Already have an account?
                 </p>
                 <button
-                  className="px-14 w-full py-2 border flex gap-2 bg-primary border-primary rounded-full text-slate-200 hover:border-white hover:text-white hover:shadow transition duration-150 items-center justify-center"
+                  className="px-14 w-full py-2 border flex gap-2 bg-blue-500 border-blue-500 rounded-full text-white hover:border-white hover:text-white hover:shadow transition duration-150 items-center justify-center"
                   onClick={handleModal}
                 >
                   <img
