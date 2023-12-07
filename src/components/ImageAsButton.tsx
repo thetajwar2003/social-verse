@@ -11,7 +11,7 @@ const ImageAsButton: React.FC<ImageAsButtonProps> = ({ handleClick }) => {
       className="border-none p-0 bg-transparent cursor-pointer relative right-5 lg:right-30 ml-20"
     >
       <img
-        src="/edit.jpeg"
+        src="./edit.jpeg"
         alt="Edit Profile Image"
         className="w-6 h-6 ml-8 lg:ml-10"
       />
