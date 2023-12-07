@@ -25,34 +25,3 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
-.profile-picture{
-  
-  border-radius: 50%; /* Makes the image circular */
-  overflow: hidden; /* Hides any overflow outside the circle */
-  width: 200; 
-  height: 200;
-}
-.Name{
-  font-size: 50px;
-  padding-bottom: 20px;
-  padding-top: 0px;
-  padding-right: 40px;
-  padding-left: 0px;
-  padding-bottom: 0px;
-
-}
-.Description{
-  color: whitesmoke;
-  font-size: 20px;
-  padding-top: 0px;
-}
-
-.EditableDescription{
-  padding-top: 10px;
-}
-.EditButton{
-  padding-left: 20px;
-  padding-top: 20px;
-  font-size: large;
-  font-weight: bold;
-}
