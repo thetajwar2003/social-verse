@@ -16,35 +16,46 @@ export default function Header() {
   };
 
   return (
-    <nav className="nav-bar">
+    <nav>
       <div className="container mx-auto flex justify-between items-center relative p-4">
-
-      <Link href="/">
+        <Link href="/">
           <h1 className="text-2xl font-bold text-white flex items-center cursor-pointer">
             Social Verse
           </h1>
         </Link>
 
-
         <div className="flex items-center space-x-4">
           {/*Search button on navbar*/}
-          <SearchBox />
           {user ? (
             <>
               <Link href="/">
-
-                <div className=" hover:bg-white hover:text-black cursor-pointer">Feed</div>
+                <div className=" hover:bg-white hover:text-black cursor-pointer">
+                  Feed
+                </div>
+              </Link>
+              <Link href="/trending">
+                <div className=" hover:bg-white hover:text-black cursor-pointer">
+                  Trending
+                </div>
+              </Link>
+              <Link href="/search">
+                <div className=" hover:bg-white hover:text-black cursor-pointer">
+                  Search
+                </div>
               </Link>
               <Link href="/payment">
-                <div className=" hover:bg-white hover:text-black cursor-pointer">Payment</div>
+                <div className=" hover:bg-white hover:text-black cursor-pointer">
+                  Payment
+                </div>
               </Link>
               <Link href="/profile">
-                <div className=" hover:bg-white hover:text-black cursor-pointer">My Profile</div>
+                <div className=" hover:bg-white hover:text-black cursor-pointer">
+                  My Profile
+                </div>
               </Link>
               <button
                 onClick={handleSignOut}
                 className="bg-white text-black p-1 rounded"
-
               >
                 Sign Out
               </button>

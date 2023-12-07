@@ -1,40 +1,39 @@
-import React, { useState } from 'react';
+export function censorCurseWords(tweet: string): string {
+  const curseWords: string[] = [
+    "fuck",
+    "fucking",
+    "fucker",
+    "shit",
+    "bitch",
+    "ass",
+    "asshole",
+    "cunt",
+    "pussy",
+    "motherfucker",
+    "kutta",
+    "panchor",
+    "kuttar bacha",
+    "foqirni",
+  ];
 
-const CensorTweet = () => {
-  const [userTweet, setUserTweet] = useState('');
-  const [censoredTweet, setCensoredTweet] = useState('');
+  let censoredTweetCopy = tweet;
+  let curseWordCount = 0;
 
-  const censorCurseWords = (tweet: string): string => {
-    const curseWords: string[] = ["fuck", "fucking","fucker", "shit", "bitch", "ass", "asshole", "cunt", "pussy", "motherfucker", "kutta", "panchor", "kuttar bacha","foqirni"]; 
+  curseWords.forEach((curseWord) => {
+    const regex = new RegExp(`\\b${curseWord}\\b`, "gi"); // Use word boundaries to match exact words
+    const matchCount = (tweet.match(regex) || []).length;
+    if (matchCount > 0) {
+      curseWordCount += matchCount;
+      censoredTweetCopy = censoredTweetCopy.replace(
+        regex,
+        "*".repeat(curseWord.length)
+      );
+    }
+  });
 
-    let censoredTweetCopy = tweet;
+  if (curseWordCount > 2) {
+    return "This message has been blocked due to indecency.";
+  }
 
-    curseWords.forEach((curseWord) => {
-      const regex = new RegExp(curseWord, 'gi'); 
-      censoredTweetCopy = censoredTweetCopy.replace(regex, '*'.repeat(curseWord.length));
-    });
-
-    return censoredTweetCopy;
-  };
-
-  const handleTweetChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const tweet = event.target.value;
-    setUserTweet(tweet);
-    const censored = censorCurseWords(tweet);
-    setCensoredTweet(censored);
-  };
-
-  return (
-    <div>
-      <label htmlFor="tweet">Your Tweet:</label>
-      <textarea id="tweet" value={userTweet} onChange={handleTweetChange} />
-      
-      <div>
-        <strong>Censored Tweet:</strong>
-        <p>{censoredTweet}</p>
-      </div>
-    </div>
-  );
-};
-
-export default CensorTweet;
+  return censoredTweetCopy;
+}

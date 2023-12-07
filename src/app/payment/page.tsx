@@ -1,65 +1,46 @@
 "use client";
-import { getFirestore, doc, updateDoc, collection } from "firebase/firestore";
-import { getAuth, User } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm, SubmitHandler } from "react-hook-form";
 import "src/app/styles.css";
 import { auth } from "@/lib/firebase/config";
-import firebase from "firebase/compat/app";
 import Header from "@/components/Header";
-import { useState, useEffect } from 'react';
+import { updateUser } from "@/lib/firebase/database";
+import { useRouter } from "next/navigation";
 
 type FormData = {
-  amount: number; 
+  amount: number;
   name: string;
   cardNumber: number;
   expirationDate: number;
   cvv: number;
 };
 
-export default function Payment() {
+export default function PaymentPage() {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
 
-  const [user, setUser] = useState<User | null>(null);
-  const authInstance = getAuth();
-  const db = getFirestore();
-
-  useEffect(() => {
-    const unsubscribe = authInstance.onAuthStateChanged((user) => {
-      setUser(user);
-    });
-
-  
-    return () => unsubscribe();
-  }, [authInstance]);
+  const [user] = useAuthState(auth);
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    console.log('Form data:', data);
-    alert('Processing payment...');
-  
+    alert("Processing payment...");
+
     if (!user) {
-      console.error('User not authenticated');
+      console.error("User not authenticated");
       return;
     }
-  
-    const userRef = doc(db, 'users', user.uid);
-  
+
     try {
-      await updateDoc(userRef, {
-        amount: data.amount,
-      });
-  
-      console.log('Amount updated successfully!');
-      
-      
-      alert('Payment successful!'); 
-  
+      await updateUser(user.uid!, {
+        wallet: data.amount,
+      }).then(() => router.push("/"));
+      alert("Payment successful!");
     } catch (error) {
-      console.error('Error updating amount:', error);
+      console.error("Error updating amount:", error);
       // Handle error, show error message
     }
   };
@@ -67,7 +48,7 @@ export default function Payment() {
   return (
     <div>
       <div>
-        <Header/>
+        <Header />
       </div>
 
       <form
@@ -145,7 +126,6 @@ export default function Payment() {
           className="h-14 mb-4 mx-auto"
         />
       </form>
-      
     </div>
   );
 }
