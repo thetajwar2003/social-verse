@@ -2,9 +2,13 @@ import React, { useState } from "react";
 
 interface OgPosterCardProps {
   user: any;
+  preview?: boolean;
 }
 
-export default function OgPosterCard({ user }: OgPosterCardProps) {
+export default function OgPosterCard({
+  user,
+  preview = false,
+}: OgPosterCardProps) {
   const [isFollowed, setIsFollowed] = useState(false);
 
   const toggleFollow = () => {
@@ -35,15 +39,15 @@ export default function OgPosterCard({ user }: OgPosterCardProps) {
           <p className="text-black">Followers: {user.followers}</p>
           <p className="text-black">Following: {user.following}</p>
         </div>
-        <p
-          className={`text-black mt-2 flex justify-center ${
-            user.trendy
-              ? "bg-green-100 text-green-800 font-bold p-1 rounded"
-              : "bg-red-100 text-red-800 font-bold p-1 rounded"
-          }`}
-        >
-          {user.trendy ? "Trendy" : "Not Trendy"}
-        </p>
+        {user.trendy && (
+          <span
+            className={
+              "text-sm font-semibold py-1 px-2 rounded-full bg-green-100 text-green-800"
+            }
+          >
+            Trending
+          </span>
+        )}
       </div>
     </div>
   );

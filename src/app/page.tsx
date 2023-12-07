@@ -16,6 +16,7 @@ import {
 import { DocumentData } from "firebase/firestore";
 import { Verse } from "@/types/VerseType";
 import LoadingScreen from "@/components/LoadingScreen";
+import TrendyUsers from "@/components/TrendyUsers";
 
 export default function Home() {
   const [userData, setUserData] = useState<DocumentData | null>(null);
@@ -94,17 +95,18 @@ export default function Home() {
               ))}
           </section>
 
-          <aside className="w-80 pt-4 pl-4">
+          <aside className="w-100 pt-4 pl-2">
             {/* Top 3 Trendy Users */}
             <div className=" rounded-lg mb-4 p-4">
               <h3 className="font-bold text-lg mb-2">Top 3 Trendy Users</h3>
-              {/* Add user cards here */}
+              <TrendyUsers />
             </div>
 
             {/* Suggested Users */}
             <div className=" rounded-lg p-4">
               <h3 className="font-bold text-lg mb-2">Suggested Users</h3>
               {/* Add user cards here */}
+              <p className="text-gray-500">Feature coming soon</p>
             </div>
           </aside>
         </main>

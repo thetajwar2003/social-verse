@@ -251,3 +251,23 @@ export async function updateLikesAndDislikes(
     console.error("Error updating message: ", e);
   }
 }
+
+export async function getTrendyUsers() {
+  try {
+    const usersQuery = query(
+      collection(db, "users"),
+      where("trendy", "==", true),
+      limit(3)
+    );
+    const querySnapshot = await getDocs(usersQuery);
+
+    const users: any = [];
+    querySnapshot.forEach((doc) => {
+      users.push({ id: doc.id, ...doc.data() });
+    });
+
+    return users; // Returns an array of users with trendy set to true
+  } catch (e) {
+    console.error("Error getting trendy users: ", e);
+  }
+}
