@@ -4,6 +4,8 @@ import { useState } from "react";
 import Footer from "@/components/Footer";
 import Login from "@/components/Login";
 import Link from "next/link";
+import ProfileDetails from "@/components/ProfileDetails";
+
 
 export default function Home() {
   const [openModal, setOpenModal] = useState(false);
@@ -71,6 +73,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <ProfileDetails/>
         <Footer />
       </main>
     </>
