@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import AuthLayout from "./authLayout";
 
-import messages from "../mock/messages.json";
 import MessageCard from "@/components/MessageCard";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/lib/firebase/config";

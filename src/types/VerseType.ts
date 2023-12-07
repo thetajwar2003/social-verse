@@ -13,6 +13,7 @@ export type Verse = {
   id?: string;
   usersLiked: string[];
   usersDisliked: string[];
+  verseType?: string;
 };
 
 export type Comment = {

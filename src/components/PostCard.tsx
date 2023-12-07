@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, useEffect } from "react";
+import React, { ChangeEvent, useState, useEffect, useRef } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/lib/firebase/config";
 import { DocumentData } from "firebase/firestore";
@@ -15,6 +15,7 @@ export default function PostCard({ userData }: PostCardProps) {
   const [fileUrl, setFileUrl] = useState<string | null>(null);
   const [postText, setPostText] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [verseType, setVerseType] = useState("verse");
 
   useEffect(() => {
     // When file is set, create a URL for it
@@ -68,14 +69,15 @@ export default function PostCard({ userData }: PostCardProps) {
       comments: [],
       usersLiked: [],
       usersDisliked: [],
+      verseType: verseType,
     };
 
-    // Now the console log will reflect the firebaseUrl
     await addMessage(postData);
 
     setFile(null);
     setPostText("");
     setFileUrl("");
+    setVerseType("verse");
   };
 
   return (
@@ -94,6 +96,40 @@ export default function PostCard({ userData }: PostCardProps) {
           value={postText}
           onChange={handleTextChange}
         />
+
+        {userData && userData!.userType == "CU" && (
+          <div className="flex items-center">
+            <div className="form-check form-check-inline ml-6">
+              <input
+                className="form-radio h-5 w-5 text-blue-600"
+                type="radio"
+                name="verseType"
+                id="ad"
+                value="ad"
+                checked={verseType === "ad"}
+                onChange={() => setVerseType("ad")}
+              />
+              <label className="ml-2 text-gray-700" htmlFor="ad">
+                Ad
+              </label>
+            </div>
+
+            <div className="form-check form-check-inline ml-6">
+              <input
+                className="form-radio h-5 w-5 text-blue-600"
+                type="radio"
+                name="verseType"
+                id="job"
+                value="job"
+                checked={verseType === "job"}
+                onChange={() => setVerseType("job")}
+              />
+              <label className="ml-2 text-gray-700" htmlFor="job">
+                Job
+              </label>
+            </div>
+          </div>
+        )}
 
         <button onClick={triggerFileInput} className="text-blue-400">
           <img

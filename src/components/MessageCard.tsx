@@ -70,15 +70,35 @@ export default function MessageCard({
       <div className="pb-4 mb-4">
         <div className="flex justify-between items-center mb-2">
           <h2 className="text-xl text-black font-bold ">{verse.username}</h2>
-          <span
-            className={`text-sm font-semibold py-1 px-2 rounded-full ${
-              verse.trendy
-                ? "bg-green-100 text-green-800"
-                : "bg-red-100 text-red-800"
-            }`}
-          >
-            {verse.trendy ? "Trending" : "Not Trending"}
-          </span>
+          <div>
+            {verse.trendy && (
+              <span
+                className={
+                  "text-sm font-semibold py-1 px-2 rounded-full bg-green-100 text-green-800"
+                }
+              >
+                Trending
+              </span>
+            )}
+            {verse.verseType && verse.verseType == "job" && (
+              <span
+                className={
+                  "text-sm font-semibold py-1 px-2 rounded-full bg-blue-100 text-blue-800"
+                }
+              >
+                Job Posting
+              </span>
+            )}
+            {verse.verseType && verse.verseType == "ad" && (
+              <span
+                className={
+                  "text-sm font-semibold py-1 px-2 rounded-full bg-purple-100 text-purple-800"
+                }
+              >
+                Ad Posting
+              </span>
+            )}
+          </div>
         </div>
         <p className="text-gray-700 text-base mb-2">{verse.content}</p>
         {verse.attachments && (
