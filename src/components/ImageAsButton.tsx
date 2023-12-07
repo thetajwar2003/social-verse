@@ -4,7 +4,7 @@ interface ImageAsButtonProps {
   handleClick: () => void;
 }
 
-const ImageAsButton: React.FC<ImageAsButtonProps> = ({ handleClick }) => {
+export default function ImageAsButton({ handleClick }: ImageAsButtonProps) {
   return (
     <button
       onClick={handleClick}
