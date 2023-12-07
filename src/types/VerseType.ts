@@ -11,8 +11,8 @@ export type Verse = {
   postedDate: number;
   comments: Comment[];
   id?: string;
-  usersLiked: [];
-  usersDisliked: [];
+  usersLiked: string[];
+  usersDisliked: string[];
 };
 
 export type Comment = {

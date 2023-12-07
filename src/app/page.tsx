@@ -88,7 +88,10 @@ export default function Home() {
 
             {verses &&
               verses.map((v: Verse, index: number) => (
-                <Link href={`/${v.userId}/${v.id}?currentUser=${username}`}>
+                <Link
+                  href={`/${v.userId}/${v.id}?currentUser=${username}`}
+                  key={v.id}
+                >
                   <MessageCard verse={v} key={v.id} preview={true} />
                 </Link>
               ))}

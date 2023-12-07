@@ -28,7 +28,6 @@ export default function VersePage() {
       const fetchData = async () => {
         try {
           if (!incrementInitialized) {
-            console.log("here");
             await updateMessage(verseId, {
               reads: increment(1),
             });
@@ -50,9 +49,18 @@ export default function VersePage() {
 
       fetchData();
     }
-
-    // return () => setIncrementInitialized(false);
   }, [pathname]);
+
+  useEffect(() => {
+    const updateTrendy = async () => {
+      await updateMessage(verse.id, {
+        trendy: (verse.reads + 2) / 2 > 10,
+      });
+    };
+
+    updateTrendy();
+  }, [verse]);
+
   return (
     <AuthLayout>
       {loading && <LoadingScreen />}

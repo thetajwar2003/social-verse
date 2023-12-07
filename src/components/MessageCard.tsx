@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Verse } from "@/types/VerseType";
 import { useSearchParams } from "next/navigation";
 import { updateLikesAndDislikes, updateMessage } from "@/lib/firebase/database";
-import { arrayUnion, doc, increment, onSnapshot } from "firebase/firestore";
-import { db } from "@/lib/firebase/config";
+import { arrayUnion } from "firebase/firestore";
 
 interface MessageCardProps {
   verse: Verse;
@@ -27,7 +26,6 @@ export default function MessageCard({
   verse,
   preview = false,
 }: MessageCardProps) {
-  console.log(verse);
   const [comments, setComments] = useState(verse.comments);
   const [newComment, setNewComment] = useState("");
 
@@ -43,7 +41,7 @@ export default function MessageCard({
     }
   };
 
-  // TODO: add function that will check if the user is alredy in either the liked or the disliked array so they cant dislike again
+  // TODO: add function that will check if the user is already in either the liked or the disliked array so they cant dislike again
 
   const handleCommentSubmit = (e: React.FormEvent) => {
     e.preventDefault();
