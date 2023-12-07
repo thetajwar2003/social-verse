@@ -143,7 +143,7 @@ export async function addUser(userData: any, docId: string) {
   }
 }
 
-async function updateUser(userId: string, updates: any) {
+export async function updateUser(userId: string, updates: any) {
   try {
     const userDocRef = doc(db, "users", userId); // Adjust "users" to your users collection name
     await updateDoc(userDocRef, updates);

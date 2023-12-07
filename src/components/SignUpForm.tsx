@@ -68,7 +68,7 @@ export default function SignUpForm() {
 
     await addUser(userData, user?.uid!);
 
-    router.push("/");
+    router.push("/payment");
   };
 
   return (

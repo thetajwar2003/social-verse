@@ -34,6 +34,11 @@ export default function Header() {
                   Feed
                 </div>
               </Link>
+              <Link href="/trending">
+                <div className=" hover:bg-white hover:text-black cursor-pointer">
+                  Trending
+                </div>
+              </Link>
               <Link href="/payment">
                 <div className=" hover:bg-white hover:text-black cursor-pointer">
                   Payment
