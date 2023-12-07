@@ -10,35 +10,64 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/lib/firebase/config";
 import { useRouter } from "next/navigation";
 import PostCard from "@/components/PostCard";
-import { getUserData } from "@/lib/firebase/database";
+import {
+  getAllMessages,
+  getTopThreeLikedMessages,
+  getUserData,
+} from "@/lib/firebase/database";
 import { DocumentData } from "firebase/firestore";
+import { Verse } from "@/types/VerseType";
+import LoadingScreen from "@/components/LoadingScreen";
 
 export default function Home() {
   const [userData, setUserData] = useState<DocumentData | null>(null);
+  const [username, setUsername] = useState("guest");
+  const [verses, setVerses] = useState<any>([]);
+  const [loading, setLoading] = useState(true);
+
   const [user] = useAuthState(auth);
   const router = useRouter();
 
   useEffect(() => {
+    const fetchMessages = async (userExists: boolean) => {
+      try {
+        if (userExists) {
+          // Supposed to run when user IS logged in
+          const allMessages = await getAllMessages();
+          setVerses(allMessages);
+        } else {
+          // Supposed to run when user is NOT logged in
+          const topMessages = await getTopThreeLikedMessages();
+          setVerses(topMessages);
+        }
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+      }
+      setLoading(false);
+    };
     const fetchUserData = async () => {
       try {
         const data = await getUserData(user?.uid!);
-        setUserData(data); // Set the user data state
-        console.log(data);
+        setUserData(data);
+        setUsername(data!.username);
       } catch (error) {
         console.error("Error fetching user data:", error);
         // Handle the error as needed
       }
     };
 
-    // Call the function if userId is available
-    if (user?.uid!) {
+    if (user?.uid) {
       fetchUserData();
+      fetchMessages(true);
+    } else {
+      fetchMessages(false);
     }
   }, [user]);
 
   return (
     <AuthLayout>
       <div className="flex flex-col h-screen">
+        {loading && <LoadingScreen />}
         <main className="container mx-auto p-10 flex">
           <section className="flex-grow">
             <div className="text-center py-4">
@@ -57,12 +86,12 @@ export default function Home() {
             {/* User post input */}
             {user ? <PostCard userData={userData} /> : null}
 
-            {/* User posts feed */}
-            <div className="divide-y">
-              {messages.map((m, index) => (
-                <MessageCard {...m} key={index} />
+            {verses &&
+              verses.map((v: Verse, index: number) => (
+                <Link href={`/${v.userId}/${v.id}?currentUser=${username}`}>
+                  <MessageCard verse={v} key={v.id} preview={true} />
+                </Link>
               ))}
-            </div>
           </section>
 
           <aside className="w-80 pt-4 pl-4">

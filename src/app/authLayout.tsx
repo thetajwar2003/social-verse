@@ -9,10 +9,10 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <AuthContextProvider>
+    <div className="relative">
       <Header />
       {children}
       {/* <Footer /> */}
-    </AuthContextProvider>
+    </div>
   );
 }

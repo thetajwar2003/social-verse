@@ -10,10 +10,12 @@ export type Verse = {
   userId: string;
   postedDate: number;
   comments: Comment[];
+  id?: string;
+  usersLiked: [];
+  usersDisliked: [];
 };
 
 export type Comment = {
-  userId: string;
   username: string;
   content: string;
   postedDate: number;

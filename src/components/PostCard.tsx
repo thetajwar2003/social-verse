@@ -66,6 +66,8 @@ export default function PostCard({ userData }: PostCardProps) {
       userId: user?.uid!,
       postedDate: Date.now(),
       comments: [],
+      usersLiked: [],
+      usersDisliked: [],
     };
 
     // Now the console log will reflect the firebaseUrl
