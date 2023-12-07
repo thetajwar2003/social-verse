@@ -3,6 +3,7 @@ import { Verse } from "@/types/VerseType";
 import { useSearchParams } from "next/navigation";
 import { updateLikesAndDislikes, updateMessage } from "@/lib/firebase/database";
 import { arrayUnion } from "firebase/firestore";
+import { censorCurseWords } from "@/misc/censor";
 
 interface MessageCardProps {
   verse: Verse;
@@ -100,7 +101,9 @@ export default function MessageCard({
             )}
           </div>
         </div>
-        <p className="text-gray-700 text-base mb-2">{verse.content}</p>
+        <p className="text-gray-700 text-base mb-2">
+          {censorCurseWords(verse.content)}
+        </p>
         {verse.attachments && (
           <img
             src={verse.attachments}

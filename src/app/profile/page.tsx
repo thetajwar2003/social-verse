@@ -14,6 +14,9 @@ export default function ProfilePage() {
   const [userMessages, setUserMessages] = useState<any[]>([]);
   const [userData, setUserData] = useState<DocumentData | null>(null);
 
+  const trendy = userData?.trendy; // Replace with actual condition or data check
+  const warningCount = userData?.warnings;
+
   useEffect(() => {
     const fetchUserDataAndMessages = async () => {
       if (user) {
@@ -77,6 +80,18 @@ export default function ProfilePage() {
                 </span>
                 <span className="block text-sm text-gray-300">Following</span>
               </div>
+            </div>
+            <div className="mt-4">
+              {trendy && (
+                <span className="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
+                  Trendy
+                </span>
+              )}
+              {warningCount > 0 && (
+                <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
+                  Warnings: {warningCount}
+                </span>
+              )}
             </div>
           </div>
         </div>
