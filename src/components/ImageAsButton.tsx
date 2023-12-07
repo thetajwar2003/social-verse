@@ -1,4 +1,3 @@
-import { relative } from 'path';
 import React from 'react';
 
 interface ImageAsButtonProps {
@@ -9,22 +8,20 @@ const ImageAsButton: React.FC<ImageAsButtonProps> = ({ handleClick }) => {
   return (
     <button
       onClick={handleClick}
-      style={{
-        border: 'none',
-        padding: 0,
-        background: 'none',
-        cursor: 'pointer',
-        position: 'relative',
-        right: 20
-      }}
+      className="border-none p-0 bg-transparent cursor-pointer relative right-5 lg:right-30 ml-20"
     >
       <img
         src="/edit.jpeg"
         alt="Edit Profile Image"
-        className="w-6 h-6 ml-30 lg:ml-10"
+        className="w-6 h-6 ml-8 lg:ml-10"
       />
     </button>
   );
+};
+
+export default ImageAsButton;
+
+
 };
 
 export default ImageAsButton;
