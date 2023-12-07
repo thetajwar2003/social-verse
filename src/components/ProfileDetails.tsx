@@ -8,7 +8,7 @@ import {app, firestore} from '../firebase';
 
 
 
-const ProfileDetails: React.FC = () => {
+export default function ProfileDetails() {
   const [isEditing, setIsEditing] = useState(false);
   const[name, setName]= useState('John Doe');
   const[description, setDescription] = useState("Let's Explore");
@@ -113,4 +113,3 @@ const ProfileDetails: React.FC = () => {
   );
 };
 
-export default ProfileDetails;
