@@ -14,8 +14,9 @@ export default function OgPosterCard({
   const toggleFollow = () => {
     setIsFollowed(!isFollowed);
   };
+
   return (
-    <div className="bg-white shadow-md rounded-lg p-4 m-4 flex items-center space-x-4">
+    <div className="bg-white shadow-md rounded-lg p-4 mt-4 mb-2 flex items-center space-x-4">
       <img
         src={user.profilePicUrl}
         alt="Profile"
@@ -42,10 +43,19 @@ export default function OgPosterCard({
         {user.trendy && (
           <span
             className={
-              "text-sm font-semibold py-1 px-2 rounded-full bg-green-100 text-green-800"
+              "text-sm font-semibold py-1 px-2 rounded-full bg-green-100 text-green-800 mr-2"
             }
           >
             Trending
+          </span>
+        )}
+        {user.warnings > 0 && (
+          <span
+            className={
+              "text-sm font-semibold py-1 px-2 rounded-full bg-yellow-100 text-yellow-800"
+            }
+          >
+            Warnings: {user.warnings}
           </span>
         )}
       </div>

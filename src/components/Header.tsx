@@ -16,7 +16,7 @@ export default function Header() {
   };
 
   return (
-    <nav className="nav-bar">
+    <nav>
       <div className="container mx-auto flex justify-between items-center relative p-4">
         <Link href="/">
           <h1 className="text-2xl font-bold text-white flex items-center cursor-pointer">
@@ -26,7 +26,6 @@ export default function Header() {
 
         <div className="flex items-center space-x-4">
           {/*Search button on navbar*/}
-          <SearchBox />
           {user ? (
             <>
               <Link href="/">
@@ -37,6 +36,11 @@ export default function Header() {
               <Link href="/trending">
                 <div className=" hover:bg-white hover:text-black cursor-pointer">
                   Trending
+                </div>
+              </Link>
+              <Link href="/search">
+                <div className=" hover:bg-white hover:text-black cursor-pointer">
+                  Search
                 </div>
               </Link>
               <Link href="/payment">

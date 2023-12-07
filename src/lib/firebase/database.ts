@@ -110,6 +110,26 @@ export async function getAllMessages() {
   }
 }
 
+export async function getMessagesByUserId(userId: string) {
+  try {
+    const messagesQuery = query(
+      collection(db, "messages"),
+      where("userId", "==", userId), // Filter by userId
+      orderBy("postedDate", "desc") // You can still order the results by date
+    );
+    const querySnapshot = await getDocs(messagesQuery);
+
+    const userMessages: any[] = [];
+    querySnapshot.forEach((doc) => {
+      userMessages.push({ id: doc.id, ...doc.data() });
+    });
+
+    return userMessages; // Returns an array of messages for the specified user
+  } catch (e) {
+    console.error("Error getting messages for user: ", e);
+  }
+}
+
 // Function to update a message in the 'messages' collection
 export async function updateMessage(docId: string, updates: any) {
   try {
@@ -121,12 +141,39 @@ export async function updateMessage(docId: string, updates: any) {
 }
 
 // Function to delete a message from the 'messages' collection
-export async function deleteMessage(docId: string) {
+export async function deleteUserVerse(userId: string, verseId: string) {
   try {
-    await deleteDoc(doc(db, "messages", docId));
-    console.log("Document deleted");
+    const userDocRef = doc(db, "users", userId); // Adjust "users" to your users collection name
+    const verseToRemove = { id: verseId }; // Assuming each verse is an object with an 'id' property
+    await updateDoc(userDocRef, {
+      verses: arrayRemove(verseToRemove),
+    });
+    console.log(`Verse with ID ${verseId} removed from user ${userId}`);
   } catch (e) {
-    console.error("Error deleting document: ", e);
+    console.error("Error removing verse from user: ", e);
+  }
+}
+
+export async function searchMessagesByWord(searchWord: string) {
+  try {
+    const messagesRef = collection(db, "messages");
+    const q = query(messagesRef, where("content", "==", searchWord));
+
+    const querySnapshot = await getDocs(q);
+    const matchedMessages: any = [];
+
+    if (!querySnapshot.empty) {
+      querySnapshot.forEach((doc) => {
+        matchedMessages.push({ id: doc.id, ...doc.data() });
+      });
+      return matchedMessages;
+    } else {
+      console.log("No messages found containing the word:", searchWord);
+      return [];
+    }
+  } catch (e) {
+    console.error("Error searching messages: ", e);
+    throw e;
   }
 }
 
@@ -187,6 +234,7 @@ export async function getSpecificUserData(docId: string) {
         followers: userData.followers,
         following: userData.following,
         trendy: userData.trendy,
+        warnings: userData.warnings,
       };
     } else {
       console.log("No user found with ID:", docId);
