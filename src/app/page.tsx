@@ -10,6 +10,7 @@ import { signOut } from "@/lib/firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/lib/firebase/config";
 import { useRouter } from "next/navigation";
+import ProfileDetails from "@/components/ProfileDetails";
 
 export default function Home() {
   const [user] = useAuthState(auth);
