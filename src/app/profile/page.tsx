@@ -7,7 +7,6 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import messages from "../../mock/messages.json";
-import ProfileDetails from "@/components/ProfileDetails";
 
 export default function ProfilePage() {
   const [user] = useAuthState(auth);
@@ -23,7 +22,6 @@ export default function ProfilePage() {
   };
 
   return (
-    <ProfileDetails />
     <div>
       <Header />
       <div className="container mx-auto max-w-4xl p-4">
