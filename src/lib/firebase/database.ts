@@ -15,6 +15,7 @@ import {
   getDocs,
   increment,
   arrayRemove,
+  where,
 } from "firebase/firestore";
 
 // Function to add a message to the 'messages' collection
@@ -67,6 +68,26 @@ export async function getTopThreeLikedMessages() {
     return messages; // Returns an array of the top three messages
   } catch (e) {
     console.error("Error getting top three messages: ", e);
+  }
+}
+
+export async function getTrendyMessages() {
+  try {
+    const messagesQuery = query(
+      collection(db, "messages"),
+      where("trendy", "==", true),
+      orderBy("postedDate", "desc")
+    );
+    const querySnapshot = await getDocs(messagesQuery);
+
+    const messages: any = [];
+    querySnapshot.forEach((doc) => {
+      messages.push({ id: doc.id, ...doc.data() });
+    });
+
+    return messages; // Returns an array of messages with trendy set to true
+  } catch (e) {
+    console.error("Error getting trendy messages: ", e);
   }
 }
 

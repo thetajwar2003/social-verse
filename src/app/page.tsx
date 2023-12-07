@@ -7,7 +7,6 @@ import AuthLayout from "./authLayout";
 import MessageCard from "@/components/MessageCard";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/lib/firebase/config";
-import { useRouter } from "next/navigation";
 import PostCard from "@/components/PostCard";
 import {
   getAllMessages,
@@ -25,7 +24,6 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   const [user] = useAuthState(auth);
-  const router = useRouter();
 
   useEffect(() => {
     const fetchMessages = async (userExists: boolean) => {
